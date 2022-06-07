@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modificar Perfil</title>
+        <meta charset="UTF-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" th:href="@{css/global.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{css/modificarPerfil.css}" type="text/css">
+    </head>
+    <body>
+        <header class="color_back navbar">
+            <img class="img_logo color_back" th:src="@{images/logo.png}"/>
+            <a class="btn btn_home border border-dark rounded bi bi-house-door-fill" role="button" th:href="@{/home}" ></a>
+            <h1>Modificar Perfil</h1>
+            <div class="perfil_container border border-dark rounded">
+                <i class="bi bi-person-lines-fill"></i>
+                <p class="p_margin">NOMBRE: <b><span sec:authentication="name"></span></b></p>
+            </div>
+            <a class="btn btn-default border border-dark button_perfil" role="button" th:href="@{/perfil}">Modificar Perfil</a>
+            <form method="POST" th:action="@{/logout}">
+                <a class="bi bi-box-arrow-right color_exit border border-dark rounded button_exit" href="#" onclick="this.parentNode.submit();"></a>
+            </form>
+        </header>
+    </body>
+    <div class="left_div">
+    </div>
+    <div class="rounded big_center_div">
+        <div>
+            <form enctype="multipart/form-data" method="POST" th:action="@{/perfil/guardar/}+${user.dni}">
+                <div class="info_div">
+                    <div class="cont_column left_info_div">
+                        <input type="textbox" id="nom" th:value="${user.nom}" name="nomUser">
+                        <input type="textbox" id="cognoms" th:value="${user.cognom}" name="cognomUser"> 
+                        <input type="textbox" id="correu" th:value="${user.correu}" name="correuUser">
+                        <h5>Has d'introduir la contrasenya dues vegades.</h5>
+                        <input type="textbox" id="contrasenya1" placeholder="Contrasenya" name="contrassenyaUser">
+                        <input type="textbox" id="contrasenya2" placeholder="Repeteix Contrasenya" name="repeteixContrassenya">
+                    </div>
+                    <div class="cont_column right_info_div">
+                        <h5>Imatge</h5>
+                        <img th:src="${imgUser}" class="user_image"/>
+                        <input type="file" name="fotoUser" accept="image/png, image/jpg, image/jpeg">  
+                        <input id="user" name="user" value="Guardar" type="submit">                   
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>

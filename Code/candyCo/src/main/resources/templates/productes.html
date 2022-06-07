@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Productes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" th:href="@{css/global.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{css/productes.css}" type="text/css">
+    </head>
+    <body>
+        <header class="color_back">
+            <img class="img_logo color_back" th:src="@{images/logo.png}" />
+            <div class="header_div">
+                <a class="btn btn_home border border-dark rounded bi bi-house-door-fill" role="button" th:href="@{/home}"
+                   style="size: 40px"></a>
+                <h1>Productes</h1>
+                <div class="perfil_container border border-dark rounded">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <p class="p_margin">NOMBRE: <b><span sec:authentication="name"></span></b></p>
+                </div>
+                <a class="btn btn-default border border-dark button_perfil" role="button" th:href="@{/perfil}">Modificar
+                    Perfil</a>
+                <a class="bi bi-box-arrow-right color_exit border border-dark rounded button_exit" th:href="@{/}"></a>
+            </div>
+        </header>
+        <div class="separadorh"></div>
+        <div class="left_div">
+            <div class=" container border border-dark rounded inside_div">
+                <ul>
+                    <li><a th:href="@{/magatzem}">Magatzem</a></li>
+                    <li><a th:href="@{/lots}">Lots</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="rounded big_center_div cont_column">
+            <div class="div_btn">
+                <button class="btn_crear btn btn-secondary" onclick="iniciarPopUp(event)" name="popup1">CREAR PRODUCTE</button>
+                <form method="POST" th:action="@{/pcreate}" class="form" th:object="${product}">
+                    <div id="popup1" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">CREAR PRODUCTE</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/productes">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Nom:</p>
+                                            <input type="text" th:field="*{nom}"/>
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Tipus:</p>
+                                            <input type="text" th:field="*{tipus}"/>
+                                        </div>
+                                    </div>
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Descripcio:</p>
+                                            <input type="text" th:field="*{descripcio}"/>
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Pes:</p>
+                                            <input type="text" th:field="*{pes}"/>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p class="color_p margin_div">Preu:</p>
+                                        <input type="number" th:field="*{preu}">
+                                    </div>
+                                </div>
+                                <br>
+                                <input class="btn btn-default border border-dark button_perfil container_color"
+                                    type="submit" th:value="GUARDAR">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn_crear btn btn-danger" onclick="iniciarPopUp(event)" name="popup2">ELIMINAR PRODUCTE</button>
+                <form method="POST" th:action="@{/lots}" class="form">
+                    <div id="popup2" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">ELIMINAR PRODUCTE</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/productes">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div
+                                    class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    
+                                </div>
+                                <br>
+                                <a class="btn btn-default border border-dark button_perfil container_color"
+                                    type="button"><b>GUARDAR</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <table th:if="${productes!=null && !productes.empty}" class="border border-dark table table-striped table-bordered table-hover fit-contentw">
+                <thead>
+                    <tr class="tr_color">
+                        <th></th>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Tipus</th>
+                        <th>Descripcio</th>
+                        <th>Pes</th>
+                        <th>Preu</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="producte : ${productes}"> 
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <td th:text="${producte.id_producte}"></td>
+                        <td th:text="${producte.nom}"></td>
+                        <td th:text="${producte.tipus}"></td>
+                        <td th:text="${producte.descripcio}"></td>
+                        <td th:text="${producte.pes}"></td>
+                        <td th:text="${producte.preu}"></td>
+                        <td><a class="btn btn-success button_perfil" role="button" th:text="Editar"/></td>
+                        <td><a class="btn btn-danger button_perfil" role="button" th:text="Eliminar" th:href="@{productes/eliminar/}+${producte.id_producte}"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 th:if="${productes==null || productes.empty}">
+                No hi ha productes a la llista.
+            </h1>
+        </div>
+    </body>
+    <script th:src="@{js/lots.js}"></script>
+</html>

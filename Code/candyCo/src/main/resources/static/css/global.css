@@ -1,0 +1,323 @@
+/*-----------------CSS Home-----------------*/
+.color_back{
+    background-color: #fefb64;
+}
+
+.height_div{
+    height: 79vh;
+}
+
+.expand_div{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    background-color: #d39c2f;
+    height: 75vh;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.img_logo{
+    width: auto;
+    height: 20vh;
+}
+
+i.max{
+    font-size: 20vh;
+    margin: 2.5vh;
+}
+
+a.btn.btn_home, a.btn.btn-default {
+    background-color: #ebebeb;
+}
+a.btn.btn_home:hover, a.btn.btn-default:hover{
+    background-color: #979797;
+}
+
+.container{
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: row;
+}
+
+.container_color{
+    background-color: #ebebeb;
+}
+
+.container.div{
+    width: 100vh;
+}
+
+.color_exit{
+    color: black;
+    background-color: #ff0700;
+}
+
+.center_div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.font_div{
+    font-size: 5vh;
+    width: 100%;
+}
+
+.second_div{
+    width: 100%;
+}
+
+.separadorv{
+    background-color: black;
+    height: auto;
+    width: 1px;
+}
+
+.separadorh{
+    background-color: black;
+    height: 1px;
+    width: auto;
+}
+
+.perfil_container{
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 10vh;
+    font-size: 2vh;
+}
+
+.p_margin{
+    margin: 0;
+}
+
+.container_hover{
+    padding: 0;
+}
+
+.container_hover:hover{
+    background-color: #585858;
+}
+
+.header_div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button_perfil{
+    font-size: 2vh;
+    height: fit-content;
+    width: 8.5vw;
+}
+
+.button_exit{
+    width: 4vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vh;
+    text-decoration: none;
+}
+
+/*-----------------CSS Login-----------------*/
+
+.login_box{
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;   
+    width: 25vw;
+    border: 3px solid black;
+    text-align: center;
+
+}
+.login_box h1 {
+    color: black;
+}
+
+.login_box ::placeholder{
+    color: #4d2600;
+
+}
+
+/* .login_box form button{
+    border-radius: 10%;
+    width: 100%
+}  */
+
+/* .login_box form p input{
+    border-radius: 10%;
+}  */
+
+.login_box img{
+    border-radius: 10%;
+} 
+
+
+/*-----------------CSS crear Magatzem-----------------*/
+
+.crearMagatzem{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;   
+    width: 40%;
+    text-align: center;
+}
+
+.crearMagatzem form p{
+    padding-top: 2%;
+}
+
+.crearMagatzem h1{
+    border: 3px solid black;
+    border-radius: 5%;
+    background: rgba(255, 255, 255, .5);
+    margin-top: 5%;
+
+}
+
+.inputsCrearMagat{
+    border: 3px solid black;
+    border-radius: 5%;
+    background: rgba(255, 255, 255, .5);
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.justify_center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont_column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.color_p{
+    color: #dc4c18;
+}
+
+.margin_div{
+    display: flex;
+}
+
+.div_expand{
+    width: 100%;
+}
+
+.padding_popup{
+    padding: 2vw;
+}
+
+.cerrar_btn{
+    width: 2vw;
+    height: 5vh;
+    padding: 1.2vw;
+}
+
+.scroll_div{
+    height: 50vh; 
+    overflow-y: scroll;
+}
+
+.div_round{
+    border-radius: 1rem;
+}
+
+.div_roundright{
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 0rem;
+}
+
+table{
+    display: block;
+    max-height: 50vh;
+    width: fit-content;
+}
+
+
+/*--------Buttons--------*/
+
+.btn_modificar{
+    width: 40vw;
+    display: inline;
+    margin: 0 auto;
+    margin-left: 1%;
+}
+
+.btn_eliminar{
+    width: 40vw;
+    margin: 0 auto;
+    font-size: 2.3vh;
+}
+
+.btn_crear{
+    width: 40vw;
+    margin: 0 auto;
+    font-size: 2.3vh;
+}
+
+.div_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.margin_left{
+    margin-left: 1%;
+}
+
+.fit-contenth{
+    height: fit-content;
+}
+
+.fit-contentw{
+    width: fit-content;
+    max-width: 100%;
+}
+
+.tr_color{
+    background-color: #fda900;
+}
+
+.left_div{
+    height: 100%; 
+    width: 13vw; 
+    position: fixed; 
+    left: 0;
+    background-color: #fefb64;
+    overflow-x: hidden; 
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    border-top: black;
+    border-style: solid;
+    border-width: 2px;
+}

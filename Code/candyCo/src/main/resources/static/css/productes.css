@@ -1,0 +1,126 @@
+/*----------------CSS de Mostrar----------------------*/
+
+.div_iz{
+    width: 20%;
+    height: 79.9vh;
+}
+
+a, a:visited{
+    color: black;
+}
+
+p{
+    text-align: center;
+}
+
+h1{
+    font-size: 3vw ;
+}
+
+h2{
+    text-align: center;
+    width: 25vw;
+}
+
+table{
+    background-color: white;
+    text-align: center;
+    overflow: auto;
+    width: 80vw;
+}
+
+th, tr > form > button, td{
+    width: auto;
+    height: 3vh;
+    font-size:2vh;
+}
+
+.btn_inside{
+    font-size: 2vh;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
+.inside_div{
+    height: 75%;
+    padding-bottom: 5vh;
+    margin-right: 5vw;
+    padding-top: 100%; 
+    font-size: 3vh;
+}
+
+.big_center_div{
+    background-color: #fefb64;
+    height: 70vh;
+    margin: 1.5vw;
+    margin-left: 14.5vw;
+    padding: 4vh;
+}
+
+.big_center_div form{
+    display: inline;
+}
+
+.big_center_div form button{
+    width: 25vw;
+}
+
+.form{
+    width: content-box;
+}
+
+.btn_home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4vh;
+    text-decoration: none;
+    width: 10vw;
+    height: 10vh;   
+}
+
+.div_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.overlay { 
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target{
+    visibility: visible;
+    opacity: 1;
+}
+
+#popupBody{
+    width: 46%;
+    padding: 2%;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #CCC;
+    background: #fefb64;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+#cerrar{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #F00;
+    transition: all 200ms;
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Lots</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" th:href="@{css/global.css}" type="text/css">
+        <link rel="stylesheet" th:href="@{css/lots.css}" type="text/css">
+    </head>
+
+    <body>
+        <header class="color_back">
+            <img class="img_logo color_back" th:src="@{images/logo.png}" />
+            <div class="header_div">
+                <a class="btn btn_home border border-dark rounded bi bi-house-door-fill" role="button" th:href="@{/home}"
+                   style="size: 40px"></a>
+                <h1>Lots</h1>
+                <div class="perfil_container border border-dark rounded">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <p class="p_margin">NOMBRE: <b><span sec:authentication="name"></span></b></p>
+                </div>
+                <a class="btn btn-default border border-dark button_perfil" role="button" th:href="@{/perfil}">Modificar
+                    Perfil</a>
+                <a class="bi bi-box-arrow-right color_exit border border-dark rounded button_exit" th:href="@{/}"></a>
+            </div>
+        </header>
+        <div class="separadorh"></div>
+        <div class="left_div">
+            <div class=" container border border-dark rounded inside_div">
+                <ul>
+                    <li><a th:href="@{/magatzem}">Magatzem</a></li>
+                    <li><a th:href="@{/productes}">Productes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="rounded big_center_div cont_column">
+            <div class="div_btn">
+                <button class="btn_crear btn btn-primary" onclick="iniciarPopUp(event)" name="popup1">CREAR MOVIMENT INTERN</button>
+                <form method="POST" th:action="@{/mcreate}" class="form" th:object="${moviment}">
+                    <div id="popup1" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">MOVIMENT INTERN</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/lots">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div
+                                    class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Nom del magatzem:</p>
+                                            <select th:name="magtzemt">
+                                                <option th:each="i : ${magatzems}" th:value="${i.id_magatzem}" th:text="${i.nom}"></option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Data creació:</p>
+                                            <input type="date" th:value="${data}" disabled/>
+                                            <input type="hidden" th:value="${data}" id="data_in" name="data_in">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p class="color_p margin_div">Data finalització:</p>
+                                        <input type="date" th:field="*{data_fi}">
+                                    </div>
+                                </div>
+                                <input id="lotidinput" name="lotidinput" type="hidden">
+                                <br>
+                                <input class="btn btn-default border border-dark button_perfil container_color"
+                                        type="submit" th:value="GUARDAR"></input>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn_crear btn btn-primary" onclick="iniciarPopUp(event)" name="popup2">CREAR MOVIMENT EXTERN</button>
+                <form method="POST" th:action="@{/lots}" class="form">
+                    <div id="popup2" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">MOVIMENT EXTERN</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/lots">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div
+                                    class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Nom del magatzem:</p>
+                                            <input type="text" placeholder="Nom del magatzem">
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Data creació:</p>
+                                            <input type="date" th:value="${data}" disabled>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p class="color_p margin_div">Data finalització:</p>
+                                        <input type="date">
+                                    </div>
+                                </div>
+                                <br>
+                                <a class="btn btn-default border border-dark button_perfil container_color"
+                                    type="button"><b>GUARDAR</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="div_btn">
+                <button class="btn_crear btn btn-secondary" onclick="iniciarPopUp(event)" name="popup3">CREAR LOTS</button>
+                <form method="POST" th:action="@{/lcreate}" class="form" th:object="${lot}">
+                    <div id="popup3" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">CREAR LOT</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/lots">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div
+                                    class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Data creació:</p>
+                                            <input type="date" th:value="${data}" disabled/>
+                                            <input type="hidden" th:value="${data}" th:name="data_creacio">
+                                            <input type="hidden" th:value="${data}" th:name="data_ultima_modificacio" value="">
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Magatzem:</p>
+                                            <select th:name="idlotmagatzem">
+                                                <option th:each="i : ${magatzems}" th:value="${i.id_magatzem}" th:text="${i.nom}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Data caducitat:</p>
+                                            <input type="date" th:field="${lot.data_caducitat}">
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Data finalització:</p>
+                                            <input type="date" th:name="data_f">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="div_btn div_expand">
+                                        <div>
+                                            <p class="color_p margin_div">Quantitat:</p>
+                                            <input type="text" placeholder="Quantitat" th:field="${lot.quantitat}">
+                                        </div>
+                                        <div>
+                                            <p class="color_p margin_div">Autor:</p>
+                                            <p th:text="${adminName}"></p>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <p class="color_p margin_div">Producte:</p>
+                                        <select th:name="idlotproducte">
+                                            <option th:each="p : ${productes}" th:value="${p.id_producte}" th:text="${p.nom}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <input class="btn btn-default border border-dark button_perfil container_color"
+                                    type="submit" th:value="GUARDAR">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn_crear btn btn-danger" onclick="mostrarPopUp(event)" name="popup4">ELIMINAR LOTS</button>
+                <form method="POST" th:action="@{lot/eliminartots}" class="form">
+                    <div id="popup4" class="overlay justify_center">
+                        <div id="popupBody">
+                            <div class="justify_center">
+                                <h2 class="container_color rounded border border-dark">ELIMINAR LOTS</h2>
+                            </div>
+                            <a id="cerrar"
+                                class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                href="/lots">&times;</a>
+                            <div class="justify_center cont_column">
+                                <div
+                                    class="popupContent container rounded border border-dark justify_center cont_column padding_popup">
+                                    <h2>Estas segur de que vols eliminar els lots seleccionats?</h2>
+                                    <input id="deleteinput" name="deleteinput" type="hidden">
+                                </div>
+                                <br>
+                                <input class="btn btn-default border border-dark button_perfil container_color"
+                                    type="submit" th:value="SI"  onclick="deleteAll()">
+                                    <a id="cerrar2"
+                                    class="container_color rounded border border-dark cerrar_btn justify_center padding_popup"
+                                    href="/lots">No</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <table th:if="${lots!=null && !lots.empty}" class="border border-dark table table-striped table-bordered table-hover fit-contentw">
+                <thead>
+                    <tr class="tr_color">
+                        <th></th>
+                        <th>ID</th>
+                        <th>dataCreacio</th>
+                        <th>dataUltimaModificacio</th>
+                        <th>dataFinalitzacio</th>
+                        <th>dataCaducitat</th>
+                        <th>quantitat</th>
+                        <th>Autor</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="lot : ${lots}">
+                        <td>
+                            <input id="box" type="checkbox" th:value="${lot.id_lot}">
+                        </td>
+                        <td th:text="${lot.id_lot}"></td>
+                        <td th:text="${lot.data_creacio}"></td>
+                        <td th:text="${lot.data_ultima_modificacio}"></td>
+                        <td th:text="${lot.data_finalitzacio}"></td>
+                        <td th:text="${lot.data_caducitat}"></td>
+                        <td th:text="${lot.quantitat}"></td>
+                        <td th:text="${lot.autor.dni}"></td>
+                        <td><a class="btn btn-success button_perfil" role="button"
+                            th:text="Editar" /></td>
+                        <td><a class="btn btn-danger button_perfil btn_inside" role="button" th:text="Eliminar" th:href="@{lot/eliminar/}+${lot.id_lot}"/></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 th:if="${lots==null || lots.empty}">
+                No hi ha lots a la llista.
+            </h1>
+        </div>
+    </body>
+    <script th:src="@{js/lots.js}"></script>
+</html>
